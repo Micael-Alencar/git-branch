@@ -54,4 +54,4 @@ jobs:
         run: |
           sleep 5
           docker ps
-          curl --fail --silent --show-error http://localhost:8080
+          curl --fail --silent --show-error http://localhost:8081
