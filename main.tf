@@ -16,7 +16,7 @@ terraform {
 }
 
 # Provedor Docker
-provider     "docker"     {}
+provider "docker" {}
 
 # Imagem do Nginx
 resource "docker_image" "nginx" {
