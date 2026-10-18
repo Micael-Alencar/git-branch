@@ -1,3 +1,11 @@
+# Variável de senha do PostgreSQL
+variable "postgres_password" {
+  description = "Senha do banco de dados PostgreSQL"
+  type        = string
+  sensitive   = true
+}
+
+# Configuração do Terraform
 terraform {
   required_providers {
     docker = {
@@ -7,12 +15,15 @@ terraform {
   }
 }
 
+# Provedor Docker
 provider "docker" {}
 
+# Imagem do Nginx
 resource "docker_image" "nginx" {
   name = "nginx:latest"
 }
 
+# Container do site
 resource "docker_container" "web" {
   name  = "meu-container-web"
   image = docker_image.nginx.image_id
@@ -29,19 +40,24 @@ resource "docker_container" "web" {
   }
 }
 
+# Volume do PostgreSQL
 resource "docker_volume" "db_data" {
   name = "meu-projeto-db-data"
 }
 
+# Imagem do PostgreSQL
 resource "docker_image" "postgres" {
   name = "postgres:16"
 }
 
+# Container do PostgreSQL
 resource "docker_container" "db" {
   name  = "meu-container-db"
   image = docker_image.postgres.image_id
 
-  env = ["POSTGRES_PASSWORD=senha123"]
+  env = [
+    "POSTGRES_PASSWORD=${var.postgres_password}"
+  ]
 
   ports {
     internal = 5432
