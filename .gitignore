@@ -1,3 +1,37 @@
 .terraform/
 *.tfstate
 *.tfstate.*
+
+# Terraform
+*.tfvars
+*.tfvars.json
+*.tfplan
+crash.log
+crash.*.log
+.terraform.lock.hcl
+
+# Backups locais
+backups/
+*.backup
+*.backup.*
+
+# Arquivos sensíveis
+.env
+.env.*
+
+# Arquivos locais do Terraform
+*.tfvars
+*.tfvars.json
+*.tfplan
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Backups
+backups/
+*.backup
+*.backup.*
+
+# Senhas e configuracoes locais
+.env
+.env.*
